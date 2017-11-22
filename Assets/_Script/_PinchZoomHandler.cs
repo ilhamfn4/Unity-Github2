@@ -10,6 +10,7 @@ public class _PinchZoomHandler : MonoBehaviour {
 	public GameObject obj;
 	public float scaleSensitivity = 0.0175f;
 	public float scaleMinLimit = 0.4f;
+    public float scaleMaxLimit = 2f;
 
 	private Vector3 defaultScale;
     private GameObject panelFF;
@@ -45,14 +46,12 @@ public class _PinchZoomHandler : MonoBehaviour {
 					scaleValue = scaleSensitivity;
 				}
                 float scaleValueResult = obj.transform.localScale.x + scaleValue;
-                scaleValueResult = Mathf.Clamp(scaleValueResult, scaleMinLimit, scaleValueResult);
+                scaleValueResult = Mathf.Clamp(scaleValueResult, scaleMinLimit, scaleMaxLimit);
                 obj.transform.localScale = new Vector3(scaleValueResult, scaleValueResult, scaleValueResult);
 
-                //if (panelFF != null) {
-                //    float scaleValueResultPanelFF = panelFF.transform.localScale.x - scaleValue;
-                //    scaleValueResultPanelFF = Mathf.Clamp(scaleValueResultPanelFF, scaleMinLimit, scaleValueResultPanelFF);
-                //    panelFF.transform.localScale = new Vector3(scaleValueResultPanelFF, scaleValueResult, scaleValueResultPanelFF);
-                //}
+                if (panelFF != null) {
+                    
+                }
 
                 text.text = "Parent Scale : x " + obj.transform.localScale.x + " y " + obj.transform.localScale.y + " z " + obj.transform.localScale.z;
             }
@@ -97,8 +96,8 @@ public class _PinchZoomHandler : MonoBehaviour {
                 
                 //if (panelFF != null) {
                 //    float scaleValueResultPanelFF = panelFF.transform.localScale.x - scaleValue;
-                //    scaleValueResultPanelFF = Mathf.Clamp(scaleValueResultPanelFF, scaleMinLimit, scaleValueResultPanelFF);
-                //    panelFF.transform.localScale = new Vector3(scaleValueResultPanelFF, scaleValueResult, scaleValueResultPanelFF);
+                //    scaleValueResultPanelFF = Mathf.Clamp(scaleValueResultPanelFF, scaleMinLimit, scaleMaxLimit);
+                //    panelFF.transform.localScale = new Vector3(scaleValueResultPanelFF, scaleValueResultPanelFF, scaleValueResultPanelFF);
                 //}    
 
                 text.text = "Parent Scale : x " + obj.transform.localScale.x + " y " + obj.transform.localScale.y + " z " + obj.transform.localScale.z;
