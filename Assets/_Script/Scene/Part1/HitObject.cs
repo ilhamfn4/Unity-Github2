@@ -26,7 +26,7 @@ public class HitObject : MonoBehaviour {
 
     private void Update () {
 
-        if (Input.touchCount > 0 && panelFF == null) {
+        if ((Input.touchCount > 0 || Input.GetMouseButtonDown(0)) && panelFF == null) {
 
             Ray ray;
 

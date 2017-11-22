@@ -49,13 +49,9 @@ public class _PinchZoomHandler : MonoBehaviour {
                 scaleValueResult = Mathf.Clamp(scaleValueResult, scaleMinLimit, scaleMaxLimit);
                 obj.transform.localScale = new Vector3(scaleValueResult, scaleValueResult, scaleValueResult);
 
-                if (panelFF != null) {
-                    
-                }
-
                 text.text = "Parent Scale : x " + obj.transform.localScale.x + " y " + obj.transform.localScale.y + " z " + obj.transform.localScale.z;
             }
-#else
+            #else
 			// If there are two touches on the device...
 			if (Input.touchCount == 2)
 			{
@@ -91,17 +87,15 @@ public class _PinchZoomHandler : MonoBehaviour {
 //				}
 				float scaleValue = scaleSensitivity * deltaMagnitudeDiff;
 				float scaleValueResult = obj.transform.localScale.x + scaleValue;
-				scaleValueResult = Mathf.Clamp (scaleValueResult, scaleMinLimit, scaleValueResult);
+				scaleValueResult = Mathf.Clamp (scaleValueResult, scaleMinLimit, scaleMaxLimit);
 				obj.transform.localScale = new Vector3 (scaleValueResult, scaleValueResult, scaleValueResult);
                 
-                //if (panelFF != null) {
-                //    float scaleValueResultPanelFF = panelFF.transform.localScale.x - scaleValue;
-                //    scaleValueResultPanelFF = Mathf.Clamp(scaleValueResultPanelFF, scaleMinLimit, scaleMaxLimit);
-                //    panelFF.transform.localScale = new Vector3(scaleValueResultPanelFF, scaleValueResultPanelFF, scaleValueResultPanelFF);
-                //}    
-
-                text.text = "Parent Scale : x " + obj.transform.localScale.x + " y " + obj.transform.localScale.y + " z " + obj.transform.localScale.z;
-                
+                if (panelFF != null) {
+                    float scaleValueResultPanelFF = panelFF.transform.localScale.x - scaleValue;
+                    scaleValueResultPanelFF = Mathf.Clamp(scaleValueResultPanelFF, 1f, 4f);
+                    panelFF.transform.localScale = new Vector3(scaleValueResultPanelFF, scaleValueResultPanelFF, scaleValueResultPanelFF);
+                    text.text = "Panel FF Scale : x " + panelFF.transform.localScale.x + " y " + panelFF.transform.localScale.y + " z " + panelFF.transform.localScale.z;
+                }    
 			}
 #endif
         }
