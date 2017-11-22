@@ -26,7 +26,7 @@ public class HitObject : MonoBehaviour {
 
     private void Update () {
 
-        if (Input.GetMouseButtonDown(0) && panelFF == null) {
+        if (Input.touchCount > 0 && panelFF == null) {
 
             Ray ray;
 
@@ -63,9 +63,9 @@ public class HitObject : MonoBehaviour {
 
             Debug.DrawLine(transform.position, panelFF.transform.position);
 
-            //panelFF.transform.LookAt(mainCamera);
-            //panelFF.transform.Rotate(0, 180, 0);
-            panelFF.transform.rotation = Quaternion.Euler(mainCamera.rotation.x, panelFF.transform.rotation.y, mainCamera.rotation.z);
+            panelFF.transform.LookAt(mainCamera);
+            panelFF.transform.Rotate(0, 180, 0);
+            //panelFF.transform.rotation = Quaternion.Euler(mainCamera.rotation.x, panelFF.transform.rotation.y, mainCamera.rotation.z);
             //this.transform.rotation.SetLookRotation(mainCamera.position);
 
         }
